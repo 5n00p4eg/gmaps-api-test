@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <div class="controls"><span id="t">TEST</span></div>
+    <script>
+      function markerClicked(ME) {
+        $(this.target).toggle();
+
+      }
+      var uluru = {lat: -25.363, lng: 131.044};
+      var Kiev = { lat: 50, lng: 30};
+      var Kiev2 = { lat: 50.5, lng: 30.1};
+      var uluruM;
+      var KievM;
+      var Kiev2M;
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: Kiev
+        });
+        uluruM= new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+        KievM = new google.maps.Marker({
+          position: Kiev,
+          map: map,
+          icon: {
+            path: "M22-48h-44v43h16l6 5 6-5h16z",
+            fillColor: '#00CCBB',
+            fillOpacity: .5,
+            strokeColor: '',
+            strokeWeight: 0
+          },
+        });
+        Kiev2M = new google.maps.Marker({
+          position: Kiev2,
+          map: map,
+          icon: {
+            path: "M22-48h-44v43h16l6 5 6-5h16z",
+            fillColor: '#0000BB',
+            fillOpacity: 1,
+            strokeColor: '',
+            strokeWeight: 0
+          },
+          target: '#t'
+        });
+        Kiev2M.addListener('click', markerClicked);
+
+      }
+    </script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByKx75pfMSxHoFJMC-X6nUrR4-gcvRdjI&callback=initMap"></script>
+
+    <script>
+    $( document ).ready(function() {
+      $('#t').click(function() {
+        //var map = new google.maps.Map(document.getElementById("map"));
+        //window.map.setCenter({lat: -25.363, lng: 131.044});
+      });
+
+
+    });
+    </script>
+  </body>
+</html>
